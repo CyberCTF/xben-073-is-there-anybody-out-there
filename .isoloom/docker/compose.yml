@@ -9,6 +9,9 @@ services:
   web:
     build:
       context: ../../build/web
+      labels:
+        isoloom.managed: 'true'
+        isoloom.environment: xben-073-is-there-anybody-out-there
     image: isoloom/xben-073-is-there-anybody-out-there-web
     platform: linux/amd64
     hostname: web
@@ -40,6 +43,8 @@ services:
           memory: 512M
     labels:
       isoloom.service.web: http:80
+      isoloom.managed: 'true'
+      isoloom.environment: xben-073-is-there-anybody-out-there
     restart: unless-stopped
   web-routes:
     image: alpine:3.20
@@ -61,6 +66,9 @@ services:
       web:
         condition: service_started
     restart: unless-stopped
+    labels:
+      isoloom.managed: 'true'
+      isoloom.environment: xben-073-is-there-anybody-out-there
   isoloom-check:
     image: curlimages/curl:8.11.1
     profiles:
@@ -82,6 +90,9 @@ services:
         condition: service_healthy
       web-routes:
         condition: service_healthy
+    labels:
+      isoloom.managed: 'true'
+      isoloom.environment: xben-073-is-there-anybody-out-there
   isoloom-check-web:
     image: curlimages/curl:8.11.1
     profiles:
@@ -97,6 +108,9 @@ services:
         condition: service_healthy
       web-routes:
         condition: service_healthy
+    labels:
+      isoloom.managed: 'true'
+      isoloom.environment: xben-073-is-there-anybody-out-there
   isoloom-probe-amd64:
     image: busybox:1.37.0-musl
     platform: linux/amd64
@@ -108,11 +122,20 @@ services:
     - isoloom-probe-amd64:/probe
     network_mode: none
     restart: no
+    labels:
+      isoloom.managed: 'true'
+      isoloom.environment: xben-073-is-there-anybody-out-there
 networks:
   lab:
     ipam:
       config:
       - subnet: 10.61.116.0/24
         gateway: 10.61.116.1
+    labels:
+      isoloom.managed: 'true'
+      isoloom.environment: xben-073-is-there-anybody-out-there
 volumes:
-  isoloom-probe-amd64: {}
+  isoloom-probe-amd64:
+    labels:
+      isoloom.managed: 'true'
+      isoloom.environment: xben-073-is-there-anybody-out-there
