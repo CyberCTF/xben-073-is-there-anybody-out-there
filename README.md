@@ -4,7 +4,7 @@
 [validation benchmarks](https://github.com/xbow-engineering/validation-benchmarks) (by XBOW):
 a Flask page that pings a host given by the user. The flag is in FLAG.txt on the server.
 This repository runs it with [Isoloom](https://www.isoloom.com): [`isoloom.yml`](isoloom.yml) describes the machines,
-built by the benchmark's own Dockerfiles, vendored unchanged in [`build/web/app/`](build/web/app), with the fixed flag baked in.
+built by the benchmark's own Dockerfiles, vendored unchanged in [`build/web/app/`](build/web/app), with a development flag baked in; `ctf-entrypoint.sh` swaps in the player's flag (`CTF_FLAG_MAIN`) at every start.
 
 | Machine | Service |
 | --- | --- |

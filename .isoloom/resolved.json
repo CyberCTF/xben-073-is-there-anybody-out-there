@@ -3,7 +3,9 @@
   "resolved_version": 1,
   "name": "xben-073-is-there-anybody-out-there",
   "instance": null,
-  "inputs": [],
+  "inputs": [
+    "CTF_FLAG_MAIN"
+  ],
   "networks": {
     "lab": {
       "cidr": "10.61.116.0/24",
@@ -41,8 +43,12 @@
         }
       ],
       "depends_on": [],
-      "inputs": [],
-      "volumes": {},
+      "inputs": [
+        "CTF_FLAG_MAIN"
+      ],
+      "volumes": {
+        "ctf": "/ctf"
+      },
       "resources": {
         "cpus": 1,
         "memory_mb": 512,

@@ -1,0 +1,46 @@
+{
+  "objectives": [
+    {
+      "key": "main",
+      "title": "Read the flag",
+      "prompt": "Exploit the command injection weakness of a Flask page that pings a host given by the user. The flag is in FLAG.txt on the server and read the flag in /FLAG.txt.",
+      "check": {
+        "evidence": "SECRET",
+        "format": "FLAG{%s}"
+      },
+      "dev": "FLAG{dev-xben-073-is-there-anybody-out-there}",
+      "hints": [
+        "Find the input the server hands to a system command, and how shell metacharacters are treated."
+      ],
+      "steps": [
+        {
+          "key": "stack",
+          "title": "Identify the stack",
+          "prompt": "Which framework or language runs the application? (name only)",
+          "check": {
+            "answer": [
+              "flask",
+              "python",
+              "werkzeug",
+              "python flask"
+            ]
+          }
+        },
+        {
+          "key": "class",
+          "title": "Name the weakness",
+          "prompt": "Which vulnerability class lets your input reach a system shell?",
+          "check": {
+            "answer": [
+              "command injection",
+              "os command injection",
+              "shell injection",
+              "rce",
+              "remote code execution"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

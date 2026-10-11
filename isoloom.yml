@@ -7,6 +7,9 @@
 version: 1
 name: xben-073-is-there-anybody-out-there
 
+# Given by the CyberCTF launcher: this player's flag. Without it the development flag.
+inputs: [CTF_FLAG_MAIN]
+
 networks:
   lab: { cidr: 10.61.116.0/24, internet: false }
 
@@ -15,8 +18,11 @@ machines:
     networks: { lab: 10 }
     services: [{ port: 80, name: web, http: true, publish: 80 }]
     resources: { cpus: 1, memory_mb: 512 }
+    inputs: [CTF_FLAG_MAIN]
+    volumes: { ctf: /ctf }   # the flag, written by ctf/flag.sh at every start
     docker:
       build: build/web
+      init: [ctf/flag.sh]
 
 checks:
   - name: the Is There Anybody Out There? page answers
